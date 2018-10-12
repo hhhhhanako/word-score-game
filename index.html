@@ -8,11 +8,11 @@
 <body>
 	<div id="layout">
 	<header><h1>Word score game</h1></header>
-	<div id="score-box"><p><strong>Score:&nbsp;</strong><span id="score-number">0</span></p></div>
+	<div id="score-box"><p><strong>Score:&nbsp;</strong><span id="score-number"></span></p></div>
 	<br />
 	<div id="remaining-letters-key">
+		<p>remaining letters:<span id="remaining-letters-number">00</span></p>
 	</div>
-	
 	
 	<div id="letters-you-have-box">
 		<table>
@@ -27,7 +27,7 @@
 		</tr>
 		</table>
 	</div>
-	<button id="find-word-button">Run your code to find a word</button>
+	<button id="find-word-button">Find a word</button>
 	<br />
 	<br />
 	<input type="text" id="human-word-input" />
@@ -40,8 +40,10 @@
 	</ul>
 
 	<script type="text/javascript" src="lib/jquery-3.2.1.js"></script>
-	<script type="text/javascript" src="lib/wordList.min.js"></script>
-	<script type="text/javascript" src="lib/wordBank.min.js"></script>
+	<script type="text/javascript" src="lib/wordList.js"></script>
+	<script type="text/javascript" src="lib/wordBank.js"></script>
+	<!-- <script type="text/javascript" src="lib/wordList.min.js"></script>
+	<script type="text/javascript" src="lib/wordBank.min.js"></script> -->
 	<script type="text/javascript" src="js/word-score-game-letters.js"></script>
 	<script type="text/javascript" src="js/word-score-game.js"></script>
 </body>

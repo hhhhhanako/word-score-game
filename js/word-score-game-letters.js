@@ -1,3 +1,4 @@
+//添加Letter的构造函数(字母，？？，对应的分数)
 function Letter(letter, numberOfStartingTiles, pointsWhenLettersUsed) {
     this.letter = letter;  
     this.numberOfStartingTiles = numberOfStartingTiles;  
