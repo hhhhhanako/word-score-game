@@ -129,22 +129,18 @@ function addNumbersFromBag() {
 //将手里的字母及其分数展示在页面上
 function displayHand() {
 	console.log("your hand has:" + YOUR_HAND.length);
+	var tile_piece = $('.tile-piece');
 	for (i = 0; i < YOUR_HAND.length; i++) {
 		if (YOUR_HAND[i]) {
-			console.log("#letter-" + (i + 1) + " set to " + YOUR_HAND[i].letter);
-			$("#letter-" + (i + 1)).addClass("letter-" + YOUR_HAND[i].letter);
-			$("#points-" + (i + 1)).addClass("points-" + YOUR_HAND[i].pointsWhenLettersUsed);
-			$("#letter-" + (i + 1)).html(YOUR_HAND[i].letter);
-			$("#points-" + (i + 1)).html(YOUR_HAND[i].pointsWhenLettersUsed);
+			$('#letter-'+(i+1)).html(YOUR_HAND[i].letter);
+			$('#points-'+(i+1)).html(YOUR_HAND[i].pointsWhenLettersUsed);
 		}
 	}
 	if (YOUR_HAND.length < 7) {
-		var tds = $('#letters-you-have-box').find('td');
 		for (var i = YOUR_HAND.length; i < 7; i++) {
-			if (tds[i]) {
-				tds[i].remove();
+			if (tile_piece[i]) {
+				tile_piece[i].remove();
 			}
-			console.log('删除' + i);
 		}
 	}
 	$('#remaining-letters-number').html(BAG_OF_LETTERS.length);
@@ -155,7 +151,6 @@ function displayHand() {
 function getAvailableLetter() {
 	var randomIndex = Math.floor(Math.random() * BAG_OF_LETTERS.length);
 	var randomLetter = BAG_OF_LETTERS.splice(randomIndex, 1);
-	// console.log(randomLetter[0]);
 	return randomLetter[0];
 }
 
@@ -182,7 +177,6 @@ function findWordToUse() {
 		permu.run(0);
 		permu.result.forEach(function (letterArr) {
 			var tempArr = letterArr.map(function (letterObj) {
-				//报错处
 				if (letterObj == undefined) {
 					console.log('LETTER:');
 					console.log(letterObj);
@@ -207,7 +201,6 @@ function findWordToUse() {
 		$("#word-history-list").append("<li>" + maxWord.toLowerCase() + "</li>");
 		SCORE += maxPoints;
 		$("#score-number").html(SCORE);
-		clearClasses();
 		discardUsedLetters(usedLetters);
 		if (BAG_OF_LETTERS.length > 0) {
 			addNumbersFromBag();
@@ -216,6 +209,7 @@ function findWordToUse() {
 	}
 	if (BAG_OF_LETTERS.length === 0 && YOUR_HAND.length === 0) {
 		alert('Game over!')
+		
 	}
 
 }
@@ -299,7 +293,6 @@ function humanFindWordToUse() {
 //成功添加单词后恢复到添加单词之前
 function successfullyAddedWord(foundWord) {
 	$("#word-history-list").append("<li>" + foundWord + "</li>");
-	clearClasses();
 	takeOutUsedLetters();
 	//补充手里的字母到7个
 	addNumbersFromBag();
@@ -373,7 +366,6 @@ function isThisAWord(aProposedWord) {
 		var text = '^' + aProposedWord.toLowerCase().replace(/_/g, '[a-z]') + '$'
 		var reg = new RegExp(text);
 		var firstCharacter=aProposedWord.toLowerCase().charAt(0);
-		// console.log('text:'+text+' fc:'+firstCharacter);
 		if(Word_List.test(reg,firstCharacter)){
 			return true;
 		}else{
@@ -390,7 +382,6 @@ function isThisAWord(aProposedWord) {
 
 function retireHand() {
 	//Loose all the points in your hand
-	clearClasses();
 	YOUR_HAND = new Array();
 	if (BAG_OF_LETTERS.length === 0) {
 		alert('Game over!')
@@ -399,12 +390,6 @@ function retireHand() {
 	addNumbersFromBag();
 	displayHand();
 
-}
-function clearClasses() {
-	for (ii = 0; ii < YOUR_HAND.length; ii++) {
-		$("#letter-" + (ii + 1)).removeClass("letter-" + YOUR_HAND[ii].letter);
-		$("#points-" + (ii + 1)).removeClass("points-" + YOUR_HAND[ii].pointsWhenLettersUsed);
-	}
 }
 
 $(document).ready(function () {
@@ -425,5 +410,4 @@ $(document).ready(function () {
 		}
 	});
 	$('#remaining-letters-number').html(BAG_OF_LETTERS.length);
-	// Word_List.getwordBank();
 });
