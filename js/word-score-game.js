@@ -209,7 +209,6 @@ function findWordToUse() {
 	}
 	if (BAG_OF_LETTERS.length === 0 && YOUR_HAND.length === 0) {
 		alert('Game over!')
-		
 	}
 
 }

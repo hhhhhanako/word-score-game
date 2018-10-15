@@ -20,6 +20,9 @@ body{
 .layout-item{
     margin:20px 0px;
 }
+header{
+    text-align: center;
+}
 #letters-you-have-box{
     display: flex;
     justify-content: space-around;
